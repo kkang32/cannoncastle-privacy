@@ -116,7 +116,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>광고 식별자<br>(Android 광고 ID)</td>
+      <td>광고 식별자<br>(Android 광고 ID, iOS IDFA — iOS 는 추적을 허용한 경우만)</td>
       <td>광고 게재, 빈도 제한, 성과 측정, 개인 맞춤 광고</td>
     </tr>
     <tr>
@@ -168,9 +168,11 @@
     <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>광고 SDK의 네트워크 연결 상태 확인</td></tr>
     <tr><td><code>AD_ID</code></td><td>광고 식별자 접근 (Google 광고 SDK가 자동 추가)</td></tr>
     <tr><td><code>VIBRATE</code></td><td>게임 진동 효과 (환경설정에서 끌 수 있음)</td></tr>
+    <tr><td>앱 추적 허용 (iOS)</td><td>맞춤 광고를 위한 광고 식별자(IDFA) 사용. 처음 실행할 때 묻고, 거부해도 게임은 똑같이 동작합니다</td></tr>
   </tbody>
 </table>
 </div>
+<p>위 표의 <code>INTERNET</code>~<code>VIBRATE</code> 는 Android 권한 이름입니다. iOS 에서는 별도 권한 없이 같은 기능을 쓰며, 추적 허용만 따로 묻습니다.</p>
 <p>
   카메라, 위치, 연락처, 저장소, 마이크 등 민감한 권한은 요청하지 않습니다.
 </p>
@@ -185,6 +187,7 @@
 <h2>6. 이용자의 선택권</h2>
 <ul>
   <li><strong>Android 설정 → 개인정보 보호 → 광고</strong>에서 광고 ID를 재설정하거나 삭제할 수 있습니다. 광고 ID를 삭제하면 개인 맞춤 광고가 중단되고, 관련성이 낮은 일반 광고가 표시됩니다.</li>
+  <li>iOS 에서는 <strong>설정 → 개인정보 보호 및 보안 → 추적</strong>에서 본 앱의 추적 허용을 언제든 끌 수 있습니다. 끄면 IDFA 가 광고에 쓰이지 않습니다.</li>
   <li>동의가 필요한 지역의 이용자는 앱의 <strong>환경설정 → 광고 개인정보 설정</strong>에서 광고 동의를 바꿀 수 있습니다.</li>
   <li>보상형 광고는 이용자가 직접 선택할 때만 재생됩니다.</li>
   <li>앱을 삭제하면 본 앱과 관련된 모든 처리가 즉시 중단되고, 기기에 저장된 게임 데이터도 삭제됩니다.</li>
@@ -233,7 +236,7 @@
   The App shows ads using <strong>Google AdMob</strong>: a banner at the bottom of the screen, and rewarded ads
   that play only when you choose &ldquo;Watch Ad to Revive&rdquo; or &ldquo;Watch Ad for 2x&rdquo;, with an in-game
   reward for watching to the end. To serve those ads, Google may collect the following directly from your device,
-  without passing through the developer: the Android Advertising ID, IP address, device information
+  without passing through the developer: the Android Advertising ID or, on iOS, the IDFA (only if you allow tracking), IP address, device information
   (model, OS version, language, screen size), and ad interaction data such as impressions, clicks, and completed views.
   Google uses this to deliver, cap, personalize, and measure ads, and to confirm rewards.
 </p>
@@ -259,7 +262,9 @@
   The App requests <code>INTERNET</code> (to load ads), <code>ACCESS_NETWORK_STATE</code>
   (connectivity checks by the ad SDK), <code>AD_ID</code> (advertising identifier access,
   added automatically by Google&rsquo;s ad SDK), and <code>VIBRATE</code> (game vibration, which can be turned off
-  in Settings). No sensitive permissions such as camera, location, contacts, storage, or microphone are requested.
+  in Settings). These are Android permission names; on iOS the same features need no separate permission, and the App
+  only asks whether it may track you (App Tracking Transparency) to use the IDFA for personalized ads. Declining does
+  not change the game. No sensitive permissions such as camera, location, contacts, storage, or microphone are requested.
 </p>
 
 <h3>5. Children&rsquo;s privacy</h3>
@@ -272,6 +277,7 @@
 <h3>6. Your choices</h3>
 <p>
   On Android you can reset or delete your advertising ID under <strong>Settings → Privacy → Ads</strong>.
+  On iOS you can turn tracking off for the App at any time under <strong>Settings → Privacy &amp; Security → Tracking</strong>.
   In consent regions you can change your ad consent under <strong>Settings → Ad Privacy Settings</strong> in the App.
   Rewarded ads play only when you choose them. Uninstalling the App stops all related processing immediately
   and deletes the game data stored on your device.
@@ -296,7 +302,7 @@
 
 <footer>
   Cannon Castle — 개인정보처리방침 / Privacy Policy<br>
-  최종 수정: 2026년 11월 5일 · Last updated 5 November 2026
+  최종 수정: 2026년 11월 6일 (iOS 추가) · Last updated 6 November 2026 (iOS added)
 </footer>
 
 </main>
